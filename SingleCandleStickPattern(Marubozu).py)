@@ -1,12 +1,15 @@
 import pandas as pd
+import numpy as np
 import yfinance as yf
 
-df=pd.read_html("https://in.finance.yahoo.com/quote/SANGHIIND.NS?p=SANGHIIND.NS")[0]
-
-# print(df)
-
-data=yf.download("SANGHIIND.NS","2021-01-01")
-
+# df=pd.read_html("https://in.finance.yahoo.com/quote/SANGHIIND.NS?p=SANGHIIND.NS")[0]
+# data=yf.download("SANGHIIND.NS","2021-01-01")
 # data.to_csv('/Users/z0027vp/Documents/Test/data_Sanghi.csv')
 
-print(type(data))
+pd.set_option('display.max_rows', None)
+df=pd.read_csv("/Users/z0027vp/Documents/Test/data_Sanghi.csv",usecols=['Date','Open','High','Low','Close'])
+
+# print(df["Date"])
+
+if(df["Open"]==df["Low"]):
+    print(df["Date"])

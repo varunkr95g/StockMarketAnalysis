@@ -7,9 +7,16 @@ import yfinance as yf
 # data.to_csv('/Users/z0027vp/Documents/Test/data_Sanghi.csv')
 
 pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
 df=pd.read_csv("/Users/z0027vp/Documents/Test/data_Sanghi.csv",usecols=['Date','Open','High','Low','Close'])
 
 # print(df["Date"])
 
-if(df["Open"]==df["Low"]):
-    print(df["Date"])
+df['Bullish_Marubozu']=np.where(((df["Open"]-df["Low"])/df["Open"]<=0.01) &
+                                       ((df["High"]-df["Close"])/df["Close"]<=0.01) ,1,0)
+
+df['Bearish_Marubozu']=np.where(((df["High"]-df["Open"])/df["Open"]<=0.01) &
+                                       ((df["Close"]-df["Low"])/df["Close"]<=0.01) ,1,0)
+
+
+print(df[["Date","Bullish_Marubozu","Bearish_Marubozu"]])

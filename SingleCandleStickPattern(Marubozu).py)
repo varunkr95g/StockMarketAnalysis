@@ -8,7 +8,7 @@ import yfinance as yf
 
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
-df=pd.read_csv("/Users/z0027vp/Documents/Test/data_Sanghi.csv",usecols=['Date','Open','High','Low','Close'])
+df=pd.read_csv("data_Sanghi.csv",usecols=['Date','Open','High','Low','Close'])
 
 # print(df["Date"])
 
@@ -19,4 +19,5 @@ df['Bearish_Marubozu']=np.where(((df["High"]-df["Open"])/df["Open"]<=0.01) &
                                        ((df["Close"]-df["Low"])/df["Close"]<=0.01) ,1,0)
 
 
-print(df[["Date","Bullish_Marubozu","Bearish_Marubozu"]])
+rslt_df = df[df['Bullish_Marubozu']==1]
+print(rslt_df[["Date","Bullish_Marubozu","Bearish_Marubozu"]])

@@ -28,7 +28,7 @@ bullish_pattern_exists=[]
 for i in range(len(rslt_df)):
     closed_values = []
     for j in range(6):
-        closed_values.append(df.loc[df['PaperUmbrella'].shift(-j) == 1, 'Close'].iloc[i])
+        closed_values.append(df.loc[df['PaperUmbrella'].shift(-j) == 1, 'Open'].iloc[i])
 
     # print(closed_values)
     if (closed_values == sorted(closed_values)):

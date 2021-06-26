@@ -22,24 +22,25 @@ print(rslt_df[["Date","Open","Close","TheEveningStar"]])
 
 #Since No valid values exist for the above criteria, we will not check for the prior bullsih trend.
 
-# bearish_pattern_exists=[]
+# Check for prior Bullish pattern
+# prior_bullish_pattern_exists=[]
 #
 # for i in range(len(rslt_df)):
 #     closed_values = []
 #     for j in range(2,7):
-#         closed_values.append(df.loc[df['TheMorningStar'].shift(-j) == 1, 'Open'].iloc[i])
+#         closed_values.append(df.loc[df['TheEveningStar'].shift(-j) == 1, 'Open'].iloc[i])
 #
 #     # print(closed_values)
-#     if (closed_values == sorted(closed_values)):
-#         bearish_pattern_exists.append("Yes")
+#     if (closed_values == sorted(closed_values,reverse=True)):
+#         prior_bullish_pattern_exists.append("Yes")
 #
 #     else:
-#         bearish_pattern_exists.append("No")
+#         prior_bullish_pattern_exists.append("No")
 #
-# print(bearish_pattern_exists)
+# print(prior_bullish_pattern_exists)
 #
-# for i in bearish_pattern_exists:
+# for i in prior_bullish_pattern_exists:
 #     if(i=="Yes"):
-#         print("TheMorningStar Pattern formed")
+#         print("The Evening Star Pattern exists")
 #     else:
 #         print("No accurate trend")

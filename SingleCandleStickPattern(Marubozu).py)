@@ -12,16 +12,25 @@ df=pd.read_csv("data_Sanghi.csv",usecols=['Date','Open','High','Low','Close'])
 
 # print(df["Date"])
 
-#Bullish Marubozu appears when Low is almost equal to Open price and the High is almost equal to Closing price
+# Bullish Marubozu is candlestick pattern wherein the low is nearly equal to the open, close is very close to high
+# i.e there was buying throughout the day. Also, the body of the candle should not be too small
 
 df['Bullish_Marubozu']=np.where(((df["Open"]-df["Low"])/df["Open"]<=0.01) &
-                                       ((df["High"]-df["Close"])/df["Close"]<=0.01) ,1,0)
+                                       ((df["High"]-df["Close"])/df["Close"]<=0.01)
+                                    &(df["Close"]> df["Open"])
+                                &((df["Close"]-df["Open"])/df["Open"]>=0.02),1,0)
 
-#Bearish Marubozu appears when High is almost equal to Open price and the Low is almost equal to Closing price
+# Bullish Marubozu is candlestick pattern wherein the high is nearly equal to the open, close is very close to low
+# i.e there was selling throughout the day. Also, the body of the candle should not be too small
 
 df['Bearish_Marubozu']=np.where(((df["High"]-df["Open"])/df["Open"]<=0.01) &
-                                       ((df["Close"]-df["Low"])/df["Close"]<=0.01) ,1,0)
+                                       ((df["Close"]-df["Low"])/df["Close"]<=0.01)
+                                    & (df["Open"]>df["Close"])
+                                    & (abs(df["Close"]-df["Open"])/df["Open"]>=0.02),1,0)
 
 
-rslt_df = df[df['Bullish_Marubozu']==1]
-print(rslt_df[["Date","Bullish_Marubozu","Bearish_Marubozu"]])
+rslt_df_Bullsih = df[df['Bullish_Marubozu']==1]
+print(rslt_df_Bullsih[["Date","Bullish_Marubozu","Open","Low","High","Close"]])
+
+rslt_df_Bearish = df[df['Bearish_Marubozu']==1]
+print(rslt_df_Bearish[["Date","Bearish_Marubozu","Open","Low","High","Close"]])

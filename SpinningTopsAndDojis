@@ -5,7 +5,7 @@ pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 df=pd.read_csv("data_Sanghi.csv",usecols=['Date','Open','High','Low','Close'])
 
-# Spinning Tops and Dojis appear when the body is smaller than the lower and the upper shadows.
+#Spinning Tops convery indecision, trading should be avoided during such times.
 
 df['SpinningTops']=np.where( ((df["Close"]>df["Open"]) & ((df["Close"]-df["Open"])/df["Open"]<=0.015) &
                              ((df["High"]-df["Close"])/df["Close"] >=0.01) & ((df["Open"]-df["Low"])/df["Open"] >=0.01))

@@ -19,6 +19,7 @@ df['PaperHammer']=np.where( ( (abs(df["Close"]-df["Open"]))/df["Open"] <=0.015) 
 
 rslt_df = df[df['PaperHammer']==1]
 
+# print(rslt_df[["Date","PaperHammer","Open","Low","High","Close"]])
 
 
 # Paper Hammer is useful only when it's preceded by a bearish pattern. If no such pattern exists, a paper hammer isn't formed.

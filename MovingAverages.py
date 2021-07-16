@@ -10,14 +10,14 @@ short_rolling = df['Close'].rolling(window=20).mean()
 
 df['20DayClosingValue']=short_rolling
 
-#When the close value goes above the 20 day moving average it tends to indicate a bullsih pattern.
+#When the close value goes above the simple 20 day moving average it tends to indicate a bullsih pattern.
 df['BullsihBreakout']=np.where(df["Close"]>df["20DayClosingValue"],1,0)
 
 
 rslt_df = df[df['BullsihBreakout']==1]
 # print(rslt_df[["Date","Open","Close","20DayClosingValue"]])
 
-#When the close value goes below the 20 day moving average it tends to indicate a bearish pattern.
+#When the close value goes below the simple 20 day moving average it tends to indicate a bearish pattern.
 
 
 df['BearishBreakout']=np.where(df["Close"]<df["20DayClosingValue"],1,0)
